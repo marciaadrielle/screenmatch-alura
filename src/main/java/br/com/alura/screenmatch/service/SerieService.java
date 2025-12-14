@@ -34,10 +34,6 @@ public class SerieService {
     }
 
 
-    public List<SerieDTO> obterLacamentos() {
-        return converteDados(repositorio.findTop5ByOrderByEpisodiosDataLancamentoDesc());
-    }
-
     public SerieDTO obterPorId(Long id) {
         Optional<Serie> serie = repositorio.findById(id);
 
@@ -46,5 +42,9 @@ public class SerieService {
             return new SerieDTO(s.getId(), s.getTitulo(), s.getTotalTemporadas(), s.getAvaliacao(), s.getGenero(), s.getAtores(), s.getPoster(), s.getSinopse());
         }
         return null;
+    }
+
+    public List<SerieDTO> obterLacamentos() {
+        return converteDados(repositorio.lancamentosMaisRecentes());
     }
 }
